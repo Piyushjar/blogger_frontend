@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import AuthRoutes from "./components/AuthRoutes";
+import { UserContextProvider } from "./context/UserContext";
+import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import PostPage from "./pages/PostPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route element={<AuthRoutes />}>
+            <Route path="/create" element={<CreatePost />} />
+            <Route path="/post/:id" element={<PostPage />} />
+            <Route path="/edit/:id" element={<EditPost />} />
+          </Route>
+        </Route>
+        <Route
+          path="*"
+          element={
+            <div>
+              <h2 style={{ "text-align": "center" }}>Not found 404</h2>{" "}
+            </div>
+          }
+        />
+      </Routes>
+    </UserContextProvider>
   );
 }
 
