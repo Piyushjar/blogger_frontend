@@ -6,8 +6,10 @@ import { UserContext } from "../context/UserContext";
 
 function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
+  const profileUrl = `${process.env.REACT_APP_API_URL}/profile`;
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/profile`, {
+    fetch(profileUrl, {
       credentials: "include",
     }).then((res) => {
       res.json().then((userInfo) => {

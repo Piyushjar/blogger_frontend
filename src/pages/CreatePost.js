@@ -48,7 +48,11 @@ function CreatePost() {
         value={summary}
         onChange={(e) => setSummary(e.target.value)}
       />
-      <input type="file" onChange={(e) => setFiles(e.target.files)} />
+      <input
+        type="file"
+        onChange={(e) => setFiles(e.target.files)}
+        multiple={false}
+      />
       <Editor value={content} onChange={setContent} />
       <button style={{ marginTop: "5px" }}>Post 📮</button>
     </form>

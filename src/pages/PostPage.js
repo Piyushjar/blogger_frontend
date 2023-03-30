@@ -1,13 +1,14 @@
 import { formatISO9075 } from "date-fns";
 import { toast } from "react-toastify";
 import { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import SkeletonPostPage from "../components/skeletons/SkeletonPostPage";
 
 function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
@@ -32,18 +33,20 @@ function PostPage() {
     if (response.status == 200) {
       toast.success("Post Deleted");
       console.log("deleted sucessfully");
+      setRedirect(true);
     } else {
       toast.warn("Something went wrong");
     }
   }
 
+  if (redirect) {
+    <Navigate to={"/"} />;
+  }
+
   return (
     <div className="post-page">
       <div className="image">
-        <img
-          src={`${process.env.REACT_APP_API_URL}/${postInfo.cover}`}
-          alt="cover"
-        />
+        <img src={`${postInfo.cover.url}`} alt="cover" />
       </div>
       <h1>{postInfo.title}</h1>
       <div

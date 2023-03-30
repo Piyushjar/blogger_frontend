@@ -5,9 +5,11 @@ import Post from "../components/Post";
 function HomePage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const postUrl = `${process.env.REACT_APP_API_URL}/post`;
   useEffect(() => {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_URL}/post`).then((response) => {
+    fetch(postUrl).then((response) => {
       response.json().then((posts) => {
         setPosts(posts);
         setLoading(false);

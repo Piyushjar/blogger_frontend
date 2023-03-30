@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Navigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import RegisterPage from "./RegisterPage";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -38,7 +38,6 @@ function LoginPage() {
 
   return (
     <>
-      <ToastContainer pauseOnFocusLoss={false} draggablePercent={60} />
       <form className="login" onSubmit={login}>
         <h1>Login</h1>
         <input
@@ -54,6 +53,9 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button>Login 🔑</button>
+        <p style={{ textAlign: "center" }}>
+          Don't have an account ? <Link to={"/register"}>register</Link>
+        </p>
       </form>
     </>
   );
