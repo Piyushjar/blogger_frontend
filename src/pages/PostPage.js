@@ -30,17 +30,16 @@ function PostPage() {
         method: "DELETE",
       }
     );
-    if (response.status == 200) {
-      toast.success("Post Deleted");
-      console.log("deleted sucessfully");
+    if (response.ok) {
       setRedirect(true);
+      toast.success("Post Deleted");
     } else {
       toast.warn("Something went wrong");
     }
   }
 
   if (redirect) {
-    <Navigate to={"/"} />;
+    return <Navigate to={"/"} />;
   }
 
   return (
