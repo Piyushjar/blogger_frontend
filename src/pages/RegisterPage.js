@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import LoginPage from "./LoginPage";
 
 function RegisterPage() {
   const [username, setUsername] = useState("");

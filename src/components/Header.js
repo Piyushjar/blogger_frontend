@@ -23,7 +23,6 @@ function Header() {
       credentials: "include",
       method: "POST",
     });
-    localStorage.clear();
     setUserInfo(null);
     toast("Logged out sucessfully!");
   }
@@ -35,7 +34,7 @@ function Header() {
       <ToastContainer position="bottom-right" />
       <header>
         <Link to="/" className="logo">
-          Blogger
+          ByteBuzz
         </Link>
         <nav>
           {username && (

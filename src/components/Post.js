@@ -22,9 +22,7 @@ function Post({ title, summary, cover, content, author, _id, createdAt }) {
           <h2>{title}</h2>
         </Link>
         <p className="info">
-          <a href="" className="author">
-            @{author.username}
-          </a>
+          <span className="author">@{author.username}</span>
           <time>
             {clocks[randomIndex()]}
             {formatDistance(new Date(createdAt), new Date(), {
